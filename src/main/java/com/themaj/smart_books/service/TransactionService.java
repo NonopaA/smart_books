@@ -1,7 +1,9 @@
 package com.themaj.smart_books.service;
 
 import com.themaj.smart_books.dto.TransactionSummaryDto;
+import com.themaj.smart_books.model.Category;
 import com.themaj.smart_books.model.Transaction;
+import com.themaj.smart_books.repository.CategoryRepository;
 import com.themaj.smart_books.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.List;
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
+    private final CategoryRepository categoryRepository;
 
-    public TransactionService(TransactionRepository transactionRepository) {
+    public TransactionService(TransactionRepository transactionRepository, CategoryRepository categoryRepository) {
         this.transactionRepository = transactionRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Transaction save(Transaction transaction) {
@@ -45,6 +49,15 @@ public class TransactionService {
             }
             BigDecimal balance = income.subtract(expenses);
         return new TransactionSummaryDto(income, expenses, balance);
+    }
+    public void categorizeTransaction(Long transactionId, Long categoryId) {
+        Transaction transaction = transactionRepository.findById(transactionId)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        transaction.setCategory(category);
+        transactionRepository.save(transaction);
     }
 
 }

@@ -26,6 +26,9 @@ public class Transaction {
     private String comment;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
+    @ManyToOne
+    private Category category;
+
     public Transaction() {
     }
 
@@ -121,6 +124,14 @@ public class Transaction {
 
     public void setType(TransactionType type) {
         this.type = type;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
