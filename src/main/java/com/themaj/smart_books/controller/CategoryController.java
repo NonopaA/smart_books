@@ -4,13 +4,12 @@ import com.themaj.smart_books.model.Category;
 import com.themaj.smart_books.service.CategoryService;
 import com.themaj.smart_books.service.TransactionService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryService categoryService;
@@ -22,7 +21,7 @@ public class CategoryController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping("/categories")
+    @GetMapping
     public List<Category> getCategories() {
         return categoryService.getAllCategories();
     }
@@ -31,6 +30,11 @@ public class CategoryController {
         public void updateCategory(@PathVariable Long transactionId,
                                    @PathVariable Long categoryId) {
     transactionService.categorizeTransaction(transactionId, categoryId);
+        }
+
+        @PostMapping
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.saveCategory(category);
         }
     }
 

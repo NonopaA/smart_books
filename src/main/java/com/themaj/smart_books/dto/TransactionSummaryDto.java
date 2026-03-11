@@ -10,6 +10,7 @@ public class TransactionSummaryDto {
         this.income = income;
         this.expenses = expenses;
         this.balance = balance;
+
     }
 
     public BigDecimal getIncome() {
