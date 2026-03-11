@@ -14,4 +14,35 @@ public class CategoryRules {
     @ManyToOne
     private Category category;
 
+    public CategoryRules() {
+    }
+
+    public CategoryRules(String keyword, Category category) {
+        this.keyword = keyword;
+        this.category = category;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryRules{" +
+                "keyword='" + keyword + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }

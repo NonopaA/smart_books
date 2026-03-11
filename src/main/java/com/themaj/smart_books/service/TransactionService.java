@@ -2,8 +2,10 @@ package com.themaj.smart_books.service;
 
 import com.themaj.smart_books.dto.TransactionSummaryDto;
 import com.themaj.smart_books.model.Category;
+import com.themaj.smart_books.model.CategoryRules;
 import com.themaj.smart_books.model.Transaction;
 import com.themaj.smart_books.repository.CategoryRepository;
+import com.themaj.smart_books.repository.CategoryRulesRepository;
 import com.themaj.smart_books.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,13 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final CategoryRepository categoryRepository;
 
-    public TransactionService(TransactionRepository transactionRepository, CategoryRepository categoryRepository) {
+    private final CategoryRulesRepository categoryRulesRepository;
+
+    public TransactionService(TransactionRepository transactionRepository, CategoryRepository categoryRepository,
+    CategoryRulesRepository categoryRulesRepository) {
         this.transactionRepository = transactionRepository;
         this.categoryRepository = categoryRepository;
+        this.categoryRulesRepository = categoryRulesRepository;
     }
 
     public Transaction save(Transaction transaction) {
@@ -58,6 +64,25 @@ public class TransactionService {
 
         transaction.setCategory(category);
         transactionRepository.save(transaction);
+    }
+
+    public void categorizeTransaction() {
+        List<Transaction> transactions = transactionRepository.findAll();
+        List<CategoryRules> categoryRules = categoryRulesRepository.findAll();
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getCategory() !=null) {
+                continue;
+            }
+            for (CategoryRules rules : categoryRules) {
+                if (transaction.getDescription().toLowerCase()
+                        .contains(rules.getKeyword().toLowerCase()));
+
+                transaction.setCategory(rules.getCategory());
+                transactionRepository.save(transaction);
+            }
+        }
+        
     }
 
 }
