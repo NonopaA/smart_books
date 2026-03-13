@@ -27,8 +27,6 @@ public class UploadController {
         if (file == null || file.isEmpty()) {
             return ResponseEntity.badRequest().body("File is missing");
         }
-//        String fileName = file.getOriginalFilename();
-//        fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
         statementService.process(file, bank, fileType );
         return ResponseEntity.ok("Statement uploaded successfully");
     }
