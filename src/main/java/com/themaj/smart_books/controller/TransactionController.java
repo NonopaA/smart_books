@@ -26,10 +26,11 @@ public class TransactionController {
         return statementService.getAllTransactions();
     }
 
-    @GetMapping("/summary")
-    public TransactionSummaryDto getSummary() {
-        return statementService.getSummary();
+    @GetMapping("/{id}")
+    public Transaction getTransactionById(@PathVariable Long id) {
+        return statementService.getTransactionById(id);
     }
+
 
 
 }

@@ -29,10 +29,17 @@ public class TransactionService {
     }
 
     public Transaction save(Transaction transaction) {
+        if (transaction.getCategory() != null) {
+            Long categoryId = transaction.getCategory().getId();
+            Category category = categoryRepository.findById(categoryId)
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+            transaction.setCategory(category);
+        }
         return transactionRepository.save(transaction);
     }
 
     public void saveAll(List<Transaction> transactions) {
+
         transactionRepository.saveAll(transactions);
     }
     public List<Transaction> getAllTransactions() {
@@ -85,6 +92,10 @@ public class TransactionService {
         
     }
 
+    public Transaction getTransactionById(Long id) {
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+    }
 }
 
 

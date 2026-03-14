@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/upload")
 public class UploadController {
     private final StatementService statementService;
 
@@ -30,4 +30,5 @@ public class UploadController {
         statementService.process(file, bank, fileType );
         return ResponseEntity.ok("Statement uploaded successfully");
     }
+    //@GetMapping("upload")
 }

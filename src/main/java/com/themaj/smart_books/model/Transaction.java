@@ -27,6 +27,7 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType type;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Transaction() {

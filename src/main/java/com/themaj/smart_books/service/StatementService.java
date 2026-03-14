@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatementService {
@@ -29,8 +30,11 @@ public class StatementService {
         transactionRepository.saveAll(transactions);
     }
 public TransactionSummaryDto getSummary() {
-    BigDecimal income = transactionRepository.sumIncome();
-    BigDecimal expenses = transactionRepository.sumExpenses();
+    BigDecimal income = Optional.ofNullable(transactionRepository.sumIncome())
+            .orElse(BigDecimal.ZERO);
+    BigDecimal expenses = Optional.ofNullable(transactionRepository.sumExpenses())
+            .orElse(BigDecimal.ZERO);
+
     BigDecimal balance = income.subtract(expenses);
     return new TransactionSummaryDto(income, expenses, balance);
 }

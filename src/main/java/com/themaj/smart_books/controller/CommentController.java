@@ -5,7 +5,7 @@ import com.themaj.smart_books.service.CommentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentController {
     private final CommentService commentService;
 
