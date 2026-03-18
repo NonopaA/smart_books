@@ -2,6 +2,8 @@ package com.themaj.smart_books.service;
 
 import com.themaj.smart_books.Statementparser.StatementParser;
 import com.themaj.smart_books.dto.TransactionSummaryDto;
+import com.themaj.smart_books.model.Category;
+import com.themaj.smart_books.model.CategoryRules;
 import com.themaj.smart_books.model.Transaction;
 import com.themaj.smart_books.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -38,4 +40,15 @@ public TransactionSummaryDto getSummary() {
     BigDecimal balance = income.subtract(expenses);
     return new TransactionSummaryDto(income, expenses, balance);
 }
+
+public Transaction save(Transaction transaction) {
+        transaction.setType(transaction.getCategory().getType());
+
+
+    return transactionRepository.save(transaction);
+}
+public Transaction updateTransaction(Transaction transaction) {
+        return transactionRepository.save(transaction);
+}
+
 }

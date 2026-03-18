@@ -45,4 +45,9 @@ public class CategoryRules {
                 ", category=" + category +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+
+    }
 }

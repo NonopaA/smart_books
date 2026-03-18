@@ -4,6 +4,7 @@ import com.themaj.smart_books.dto.TransactionSummaryDto;
 import com.themaj.smart_books.model.Transaction;
 import com.themaj.smart_books.service.TransactionService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,21 @@ public class TransactionController {
         return statementService.getTransactionById(id);
     }
 
+    @PutMapping("/{id}")
+    public Transaction updateTransactionById(@PathVariable Long id, @RequestBody Transaction transaction) {
+        transaction.setId(id);
+        return statementService.save(transaction);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTransactionById(@PathVariable Long id) {
+        statementService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
+    @PutMapping("/transactions/{transactionId}/category/{categoryId}")
+    public void updateCategory(@PathVariable Long transactionId,
+                               @PathVariable Long categoryId) {
+        statementService.categorizeTransaction(transactionId, categoryId);
+    }
 
 }

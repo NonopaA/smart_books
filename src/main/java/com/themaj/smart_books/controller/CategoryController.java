@@ -3,10 +3,11 @@ package com.themaj.smart_books.controller;
 import com.themaj.smart_books.model.Category;
 import com.themaj.smart_books.service.CategoryService;
 import com.themaj.smart_books.service.TransactionService;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -26,13 +27,17 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    @PutMapping("/transactions/{transactionId}/category/{categoryId}")
-        public void updateCategory(@PathVariable Long transactionId,
-                                   @PathVariable Long categoryId) {
-    transactionService.categorizeTransaction(transactionId, categoryId);
-        }
+    @GetMapping("{id}")
+    public Optional<Category> getCategory(@PathVariable Long id) {
+        return categoryService.getACategory(id);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategoryById(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
 
-        @PostMapping
+    @PostMapping
     public Category createCategory(@RequestBody Category category) {
         return categoryService.saveCategory(category);
         }

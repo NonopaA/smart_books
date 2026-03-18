@@ -23,4 +23,11 @@ public class CategoryRulesService {
     public CategoryRules saveCategoryRules(CategoryRules categoryRules) {
         return categoryRulesRepository.save(categoryRules);
     }
+
+    public void delete(Long id) {
+        if (!categoryRulesRepository.existsById(id)) {
+            throw new RuntimeException(("Category rule not found"));
+        }
+        categoryRulesRepository.deleteById(id);
+    }
 }

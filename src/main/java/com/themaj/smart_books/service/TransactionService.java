@@ -63,6 +63,20 @@ public class TransactionService {
             BigDecimal balance = income.subtract(expenses);
         return new TransactionSummaryDto(income, expenses, balance);
     }
+
+
+    public Transaction getTransactionById(Long id) {
+        return transactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+    }
+
+    public void delete(Long id) {
+        if (!transactionRepository.existsById(id)) {
+            throw new RuntimeException("Transaction not found");
+        }
+        transactionRepository.deleteById(id);
+    }
+
     public void categorizeTransaction(Long transactionId, Long categoryId) {
         Transaction transaction = transactionRepository.findById(transactionId)
                 .orElseThrow(() -> new RuntimeException("Transaction not found"));
@@ -89,12 +103,7 @@ public class TransactionService {
                 transactionRepository.save(transaction);
             }
         }
-        
-    }
 
-    public Transaction getTransactionById(Long id) {
-        return transactionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Transaction not found"));
     }
 }
 
