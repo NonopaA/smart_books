@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2018
+      POSTGRES_DB: testdb
+      ports:
+        -"5432:5432"
+      volumes:
+        -pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: smart_books
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/testdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 2018
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: smartbooks_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+
+volumes:
+  pgdata:
+
+
+
+

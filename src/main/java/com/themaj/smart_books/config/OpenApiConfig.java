@@ -1,4 +1,4 @@
-package com.themaj.smart_books;
+package com.themaj.smart_books.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
