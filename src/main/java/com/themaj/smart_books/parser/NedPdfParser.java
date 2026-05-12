@@ -1,6 +1,6 @@
-package com.themaj.smart_books.service;
+package com.themaj.smart_books.parser;
 
-import com.themaj.smart_books.Statementparser.StatementParser;
+import com.themaj.smart_books.statementparser.StatementParser;
 import com.themaj.smart_books.model.Transaction;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class CapitecPdfParser implements StatementParser {
+public class NedPdfParser implements StatementParser {
     private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     @Override
     public List<Transaction> parse(MultipartFile file) throws IOException {
@@ -32,7 +32,7 @@ public class CapitecPdfParser implements StatementParser {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException("Error passing CAPITEC PDF", e);
+            throw new RuntimeException("Error passing NEDBANK PDF", e);
         }
         return transactions;
     }
@@ -65,7 +65,7 @@ public class CapitecPdfParser implements StatementParser {
 
     @Override
     public String getBankName() {
-        return "CAPITEC";
+        return "NEDBANK";
     }
 
     @Override

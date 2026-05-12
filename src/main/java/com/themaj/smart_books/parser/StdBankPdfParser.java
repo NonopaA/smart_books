@@ -1,6 +1,6 @@
-package com.themaj.smart_books.service;
+package com.themaj.smart_books.parser;
 
-import com.themaj.smart_books.Statementparser.StatementParser;
+import com.themaj.smart_books.statementparser.StatementParser;
 import com.themaj.smart_books.model.Transaction;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -32,7 +32,7 @@ public class StdBankPdfParser implements StatementParser  {
                         }
 
                 } catch (IOException e) {
-                        throw new RuntimeException("Error passing STANDARD PDF", e);
+                        throw new RuntimeException("Error passing STDBANK PDF", e);
                 }
                 return transactions;
         }
@@ -65,7 +65,7 @@ public class StdBankPdfParser implements StatementParser  {
 
         @Override
         public String getBankName() {
-                return "STD";
+                return "STDBANK";
         }
 
         @Override

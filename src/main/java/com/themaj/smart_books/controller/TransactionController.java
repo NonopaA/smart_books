@@ -1,6 +1,5 @@
 package com.themaj.smart_books.controller;
 
-import com.themaj.smart_books.dto.TransactionSummaryDto;
 import com.themaj.smart_books.model.Transaction;
 import com.themaj.smart_books.service.TransactionService;
 import jakarta.validation.Valid;

@@ -1,6 +1,6 @@
-package com.themaj.smart_books.parserService;
+package com.themaj.smart_books.parser;
 
-import com.themaj.smart_books.Statementparser.StatementParser;
+import com.themaj.smart_books.statementparser.StatementParser;
 import com.themaj.smart_books.model.Transaction;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

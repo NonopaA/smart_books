@@ -1,6 +1,6 @@
-package com.themaj.smart_books.service;
+package com.themaj.smart_books.parser;
 
-import com.themaj.smart_books.Statementparser.StatementParser;
+import com.themaj.smart_books.statementparser.StatementParser;
 import com.themaj.smart_books.model.Transaction;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class StdBankCsvParser implements StatementParser {
+public class CapitecCsvParser implements StatementParser {
 
     @Override
     public List<Transaction> parse(MultipartFile file)  throws IOException {
@@ -40,12 +40,11 @@ public class StdBankCsvParser implements StatementParser {
 
     @Override
     public String getBankName() {
-        return "STD";
+        return "CAPITEC";
     }
 
     @Override
     public String getFileType() {
         return "CSV";
     }
-
 }
