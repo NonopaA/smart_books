@@ -1,6 +1,6 @@
 package com.themaj.smart_books.service;
 
-import com.themaj.smart_books.dto.TransactionSummaryDto;
+import com.themaj.smart_books.dto.TransactionSummaryDTO;
 import com.themaj.smart_books.statementparser.StatementParser;
 import com.themaj.smart_books.model.Transaction;
 import com.themaj.smart_books.repository.TransactionRepository;
@@ -39,14 +39,14 @@ public class StatementService {
         System.out.println("transactions " + transactions.size());
         transactionRepository.saveAll(transactions);
     }
-public TransactionSummaryDto getSummary() {
+public TransactionSummaryDTO getSummary() {
     BigDecimal income = Optional.ofNullable(transactionRepository.sumIncome())
             .orElse(BigDecimal.ZERO);
     BigDecimal expenses = Optional.ofNullable(transactionRepository.sumExpenses())
             .orElse(BigDecimal.ZERO);
 
     BigDecimal balance = income.subtract(expenses);
-    return new TransactionSummaryDto(income, expenses, balance);
+    return new TransactionSummaryDTO(income, expenses, balance);
 }
 
 public Transaction save(Transaction transaction) {

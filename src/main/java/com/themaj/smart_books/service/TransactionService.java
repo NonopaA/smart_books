@@ -1,6 +1,6 @@
 package com.themaj.smart_books.service;
 
-import com.themaj.smart_books.dto.TransactionSummaryDto;
+import com.themaj.smart_books.dto.TransactionSummaryDTO;
 import com.themaj.smart_books.model.Category;
 import com.themaj.smart_books.model.CategoryRules;
 import com.themaj.smart_books.model.Transaction;
@@ -46,7 +46,7 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public TransactionSummaryDto getSummary() {
+    public TransactionSummaryDTO getSummary() {
         List<Transaction> transactions = transactionRepository.findAll();
             BigDecimal income = BigDecimal.ZERO;
             BigDecimal expenses = BigDecimal.ZERO;
@@ -61,7 +61,7 @@ public class TransactionService {
                 }
             }
             BigDecimal balance = income.subtract(expenses);
-        return new TransactionSummaryDto(income, expenses, balance);
+        return new TransactionSummaryDTO(income, expenses, balance);
     }
 
 

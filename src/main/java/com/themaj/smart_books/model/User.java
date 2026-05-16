@@ -3,7 +3,7 @@ package com.themaj.smart_books.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "userz")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

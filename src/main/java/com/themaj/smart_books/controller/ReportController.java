@@ -1,6 +1,6 @@
 package com.themaj.smart_books.controller;
 
-import com.themaj.smart_books.dto.TransactionSummaryDto;
+import com.themaj.smart_books.dto.TransactionSummaryDTO;
 import com.themaj.smart_books.service.StatementService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class ReportController {
     }
 
     @GetMapping("/summary")
-    public TransactionSummaryDto getSummary() {
+    public TransactionSummaryDTO getSummary() {
         return statementService.getSummary();
     }
 }

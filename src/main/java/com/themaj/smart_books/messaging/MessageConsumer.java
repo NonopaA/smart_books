@@ -5,14 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
-@Service
-public class MessageConsumer {
-    private static final Logger log = LoggerFactory.getLogger(MessageConsumer.class);
-
-    //Spring , continuously watch this queue and call this message whenever a message arrives.
-    //Spring creates background listener threads automatically.
-    @RabbitListener(queues = "transaction_queue")
-    public void receiveMessage(String message) {
-        log.info("Received message: {}", message);
-    }
-}
+//@Service
+//public class MessageConsumer {
+//    private static final Logger log = LoggerFactory.getLogger(MessageConsumer.class);
+//
+//    //Spring , continuously watch this queue and call this message whenever a message arrives.
+//    //Spring creates background listener threads automatically.
+//    @RabbitListener(queues = "transaction_queue")
+//    public void receiveMessage(String message) {
+//        log.info("Received message: {}", message);
+//    }
+//}
